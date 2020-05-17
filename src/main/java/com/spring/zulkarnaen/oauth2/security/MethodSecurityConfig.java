@@ -17,6 +17,7 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
 	 * we want to use them.
 	 */
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private OAuth2SecurityConfiguration securityConfig;
 

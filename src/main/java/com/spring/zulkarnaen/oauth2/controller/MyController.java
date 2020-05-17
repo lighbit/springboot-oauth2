@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.spring.zulkarnaen.oauth2.model.User;
 import com.spring.zulkarnaen.oauth2.service.UserService;
 
 @RestController
+@RequestMapping(value = "/api")
 public class MyController {
 
 	private static final Logger logger = Logger.getLogger(MyController.class);
@@ -38,6 +40,20 @@ public class MyController {
 																		// HttpStatus.NOT_FOUND
 		}
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/user/name", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.APPLICATION_XML_VALUE })
+	public ResponseEntity<User> getUserName(Authentication authentication) {
+		logger.info("Request User by ID =============");
+		logger.info("Fetching User with name " + authentication.getName());
+
+		User user = userService.findByName(authentication.getName());
+		if (user == null) {
+			logger.info("Fetching User with name " + authentication.getName() + " not Found");
+			return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
 	// -------------------Retrieve Single

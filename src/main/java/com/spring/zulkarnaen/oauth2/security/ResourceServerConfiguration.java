@@ -28,9 +28,10 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 		resources.resourceId(RESOURCE_ID).stateless(false);
 	}
 
+	/* DIGUNAKAN JIKA INGIN SET AUTH DENGAN API BERIKUT */
 	public void configure(HttpSecurity http) throws Exception {
-		http.anonymous().disable().requestMatchers().antMatchers("/user/**").and().authorizeRequests()
-				.antMatchers("/user/**").access("hasRole('ADMIN')").and().exceptionHandling()
+		http.anonymous().disable().requestMatchers().antMatchers("/api/**").and().authorizeRequests()
+				.antMatchers("/api/**").access("hasRole('ADMIN')").and().exceptionHandling()
 				.accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 
