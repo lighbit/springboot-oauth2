@@ -28,20 +28,19 @@ public class MyController {
 	@Autowired
 	UserService userService; // Service which will do all data retrieval/manipulation work
 
-	// -------------------Retrieve All
-	// Users--------------------------------------------------------
-
-	@RequestMapping(value = "/user/", method = RequestMethod.GET)
+	/* GET ALL DATA */
+	@RequestMapping(value = "/user/", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<List<User>> listAllUsers() {
 		logger.info("Request All User =============");
 		List<User> users = userService.findAllUsers();
 		if (users.isEmpty()) {
-			return new ResponseEntity<List<User>>(HttpStatus.NOT_FOUND);// You many decide to return
-																		// HttpStatus.NOT_FOUND
+			return new ResponseEntity<List<User>>(HttpStatus.NOT_ACCEPTABLE);
 		}
 		return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	}
 
+	/* GET DATA WITH SPESIFIC NAME (FROM LOGIN) */
 	@RequestMapping(value = "/user/name", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<User> getUserName(Authentication authentication) {
@@ -56,9 +55,7 @@ public class MyController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
-	// -------------------Retrieve Single
-	// User--------------------------------------------------------
-
+	/* GET DATA WITH SPESIFIC ID (FROM DATABASES) */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<User> getUser(@PathVariable("id") long id) {
@@ -73,10 +70,9 @@ public class MyController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 
-	// -------------------Create a
-	// User--------------------------------------------------------
-
-	@RequestMapping(value = "/user/", method = RequestMethod.POST)
+	/* POST NEW DATA USER */
+	@RequestMapping(value = "/user/", method = RequestMethod.POST, produces = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<Void> createUser(@RequestBody User user, UriComponentsBuilder ucBuilder) {
 		logger.info("Create New User =============");
 		logger.info("Creating User " + user.getName());
@@ -93,10 +89,9 @@ public class MyController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
-	// ------------------- Update a User
-	// --------------------------------------------------------
-
-	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+	/* PUT USER WITH SPESIFIC ID */
+	@RequestMapping(value = "/user/{id}", method = RequestMethod.PUT, produces = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
 		logger.info("Request Updating User =============");
 		logger.info("Updating User " + id);
@@ -116,9 +111,7 @@ public class MyController {
 		return new ResponseEntity<User>(currentUser, HttpStatus.OK);
 	}
 
-	// ------------------- Delete a User
-	// --------------------------------------------------------
-
+	/* DELETE USER WITH SPESIFIC ID */
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser(@PathVariable("id") long id) {
 		logger.info("Request Delete User =============");
@@ -134,9 +127,7 @@ public class MyController {
 		return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
 	}
 
-	// ------------------- Delete All Users
-	// --------------------------------------------------------
-
+	/* DELETE ALL DATA USER */
 	@RequestMapping(value = "/user/", method = RequestMethod.DELETE)
 	public ResponseEntity<User> deleteAllUsers() {
 		logger.info("Request Delete All User =============");
