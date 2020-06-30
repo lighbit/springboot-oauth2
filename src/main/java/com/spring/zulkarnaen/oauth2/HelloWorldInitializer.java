@@ -3,7 +3,11 @@ package com.spring.zulkarnaen.oauth2;
 import javax.servlet.Filter;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
+/**
+ * 
+ * @author zulkarnaen
+ *
+ */
 public class HelloWorldInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override

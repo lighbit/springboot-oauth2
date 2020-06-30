@@ -18,7 +18,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.spring.zulkarnaen.oauth2.model.User;
 import com.spring.zulkarnaen.oauth2.service.UserService;
-
+/**
+ * 
+ * @author zulkarnaen
+ *
+ */
 @RestController
 @RequestMapping(value = "/api")
 public class MyController {

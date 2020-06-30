@@ -9,7 +9,11 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.spring.zulkarnaen.oauth2.model.User;
-
+/**
+ * 
+ * @author zulkarnaen
+ *
+ */
 @Service("userService")
 public class UserServiceImpl implements UserService {
 

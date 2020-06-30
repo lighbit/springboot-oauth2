@@ -11,7 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-
+/**
+ * 
+ * @author zulkarnaen
+ *
+ */
 public class CORSFilter implements Filter {
 
 	private static final Logger logger = Logger.getLogger(CORSFilter.class);

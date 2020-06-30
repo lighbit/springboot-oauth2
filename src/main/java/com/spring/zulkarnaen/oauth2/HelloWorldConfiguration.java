@@ -3,7 +3,11 @@ package com.spring.zulkarnaen.oauth2;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
+/**
+ * 
+ * @author zulkarnaen
+ *
+ */
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.spring.zulkarnaen.oauth2")

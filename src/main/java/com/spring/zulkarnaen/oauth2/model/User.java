@@ -1,5 +1,9 @@
 package com.spring.zulkarnaen.oauth2.model;
-
+/**
+ * 
+ * @author zulkarnaen
+ *
+ */
 public class User {
 
 	private long id;
